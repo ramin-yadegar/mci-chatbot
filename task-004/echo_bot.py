@@ -32,18 +32,15 @@ class BotHandler:
 
           
 token = 'write your <bot token>'
-greet_bot = BotHandler(token)
-now = datetime.datetime.now()
+echo_bot = BotHandler(token)
 
 def main():
     new_offset = None
-    today = now.day
-    hour = now.hour
 
     while True:
-        greet_bot.get_updates(new_offset)
+        echo_bot.get_updates(new_offset)
 
-        last_update = greet_bot.get_last_update()
+        last_update = echo_bot.get_last_update()
 
         last_update_id = last_update['update_id']
         last_chat_text = last_update['message']['text']
@@ -51,7 +48,7 @@ def main():
         last_chat_name = last_update['message']['chat']['first_name']
 
 #         print(last_chat_text)
-        greet_bot.send_message(last_chat_id, last_chat_text)
+        echo_bot.send_message(last_chat_id, last_chat_text)
         new_offset = last_update_id + 1
 
 if __name__ == '__main__':
